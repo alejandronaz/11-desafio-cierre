@@ -10,7 +10,6 @@ import (
 	"github.com/bootcamp-go/desafio-go-bases/app/internal/utils"
 )
 
-// implements the TicketRepoInterface
 type TicketRepo struct {
 	List []tickets.Ticket
 }
