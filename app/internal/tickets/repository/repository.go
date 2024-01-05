@@ -120,9 +120,9 @@ func (t *TicketRepo) GetCountByPeriod(time TicketTime) (total int, err error) {
 		case Morning:
 			isBtw, err = isBetween(t, 6, 12)
 		case Afternoon:
-			isBtw, err = isBetween(t, 12, 18)
+			isBtw, err = isBetween(t, 12, 19)
 		case Evening:
-			isBtw, err = isBetween(t, 18, 24)
+			isBtw, err = isBetween(t, 19, 24)
 		}
 
 		if err != nil {
