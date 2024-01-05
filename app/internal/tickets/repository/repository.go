@@ -110,60 +110,27 @@ const (
 
 func (t *TicketRepo) GetCountByPeriod(time TicketTime) (total int, err error) {
 
-	switch time {
+	for _, t := range t.List {
 
-	case EarlyMorning:
+		var isBtw bool
 
-		for _, t := range t.List {
-
-			isBtw, err := isBetween(t, 0, 6)
-			if err != nil {
-				return 0, err
-			}
-			if isBtw {
-				total++
-			}
+		switch time {
+		case EarlyMorning:
+			isBtw, err = isBetween(t, 0, 6)
+		case Morning:
+			isBtw, err = isBetween(t, 6, 12)
+		case Afternoon:
+			isBtw, err = isBetween(t, 12, 18)
+		case Evening:
+			isBtw, err = isBetween(t, 18, 24)
 		}
 
-	case Morning:
-
-		for _, t := range t.List {
-
-			isBtw, err := isBetween(t, 6, 12)
-			if err != nil {
-				return 0, err
-			}
-			if isBtw {
-				total++
-			}
+		if err != nil {
+			return 0, err
 		}
-
-	case Afternoon:
-
-		for _, t := range t.List {
-
-			isBtw, err := isBetween(t, 12, 19)
-			if err != nil {
-				return 0, err
-			}
-			if isBtw {
-				total++
-			}
+		if isBtw {
+			total++
 		}
-
-	case Evening:
-
-		for _, t := range t.List {
-
-			isBtw, err := isBetween(t, 19, 24)
-			if err != nil {
-				return 0, err
-			}
-			if isBtw {
-				total++
-			}
-		}
-
 	}
 
 	return total, nil
