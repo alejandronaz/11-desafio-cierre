@@ -1,4 +1,4 @@
-package tickets_test
+package repository_test
 
 import "testing"
 

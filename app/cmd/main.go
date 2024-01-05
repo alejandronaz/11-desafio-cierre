@@ -3,16 +3,16 @@ package main
 import (
 	"fmt"
 
-	tickets "github.com/bootcamp-go/desafio-go-bases/app/internal/tickets/repostitory"
+	"github.com/bootcamp-go/desafio-go-bases/app/internal/tickets/repository"
 )
 
 func main() {
 
 	// Create the list of tickets
-	ticketList := tickets.NewTicketRepo()
+	ticketRepo := repository.NewTicketRepo()
 
 	// Load the data from the csv file
-	err := ticketList.LoadData()
+	err := ticketRepo.LoadData()
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -21,12 +21,12 @@ func main() {
 	fmt.Println("----------------------------------------------------")
 
 	// Print the list of tickets
-	ticketList.PrintTickets()
+	ticketRepo.PrintTickets()
 
 	fmt.Println("----------------------------------------------------")
 
 	// Get the total tickets to Argentina
-	argentinaTotal, err := ticketList.GetTotalTickets("Argentina")
+	argentinaTotal, err := ticketRepo.GetTotalTickets("Argentina")
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -36,28 +36,28 @@ func main() {
 	fmt.Println("----------------------------------------------------")
 
 	// Get the total tickets to Argentina by period
-	earlyMornings, err := ticketList.GetCountByPeriod(tickets.EarlyMorning)
+	earlyMornings, err := ticketRepo.GetCountByPeriod(repository.EarlyMorning)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println("Total early morning tickets to Argentina: ", earlyMornings)
 
-	mornings, err := ticketList.GetCountByPeriod(tickets.Morning)
+	mornings, err := ticketRepo.GetCountByPeriod(repository.Morning)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println("Total morning tickets to Argentina: ", mornings)
 
-	afternoon, err := ticketList.GetCountByPeriod(tickets.Afternoon)
+	afternoon, err := ticketRepo.GetCountByPeriod(repository.Afternoon)
 	if err != nil {
 		fmt.Println(err)
 		return
 	}
 	fmt.Println("Total afternoon tickets to Argentina: ", afternoon)
 
-	evening, err := ticketList.GetCountByPeriod(tickets.Evening)
+	evening, err := ticketRepo.GetCountByPeriod(repository.Evening)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -67,7 +67,7 @@ func main() {
 	fmt.Println("----------------------------------------------------")
 
 	// Get the average tickets to Argentina
-	avgArg, err := ticketList.AverageDestination("Argentina")
+	avgArg, err := ticketRepo.AverageDestination("Argentina")
 	if err != nil {
 		fmt.Println(err)
 		return

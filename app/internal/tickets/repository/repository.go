@@ -1,4 +1,4 @@
-package tickets
+package repository
 
 import (
 	"encoding/csv"
@@ -6,10 +6,11 @@ import (
 	"os"
 	"strconv"
 
-	"github.com/bootcamp-go/desafio-go-bases/app/internal/tickets"
+	tickets "github.com/bootcamp-go/desafio-go-bases/app/internal/tickets/model"
 	"github.com/bootcamp-go/desafio-go-bases/app/internal/utils"
 )
 
+// implements the TicketRepoInterface
 type TicketRepo struct {
 	List []tickets.Ticket
 }
