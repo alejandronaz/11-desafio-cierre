@@ -138,6 +138,7 @@ func (t *TicketRepo) GetCountByPeriod(time TicketTime) (total int, err error) {
 }
 
 // function to calculate if a ticket is between two hours
+// floor is not included, ceil is included
 func isBetween(ticket tickets.Ticket, floor, ceil int) (bool, error) {
 
 	// convert time to hour and min
@@ -146,7 +147,7 @@ func isBetween(ticket tickets.Ticket, floor, ceil int) (bool, error) {
 		return false, err
 	}
 
-	if min == 0 && hour >= floor && hour <= ceil {
+	if min == 0 && hour > floor && hour <= ceil {
 		return true, nil
 	}
 
