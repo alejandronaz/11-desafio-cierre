@@ -116,13 +116,13 @@ func (t *TicketRepo) GetCountByPeriod(time TicketTime) (total int, err error) {
 
 		switch time {
 		case EarlyMorning:
-			isBtw, err = isBetween(t, 0, 6)
+			isBtw, err = isBetween(t, 0, 7)
 		case Morning:
-			isBtw, err = isBetween(t, 6, 12)
+			isBtw, err = isBetween(t, 7, 13)
 		case Afternoon:
-			isBtw, err = isBetween(t, 12, 19)
+			isBtw, err = isBetween(t, 13, 20)
 		case Evening:
-			isBtw, err = isBetween(t, 19, 24)
+			isBtw, err = isBetween(t, 20, 24)
 		}
 
 		if err != nil {
@@ -147,7 +147,7 @@ func isBetween(ticket tickets.Ticket, floor, ceil int) (bool, error) {
 		return false, err
 	}
 
-	if min == 0 && hour > floor && hour <= ceil {
+	if min == 0 && hour >= floor && hour < ceil {
 		return true, nil
 	}
 
